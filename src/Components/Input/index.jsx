@@ -1,9 +1,11 @@
-const Input = ({props}) => {
+import * as S from './styles'
+
+const Input = ({label}) => {
   return (
-    <div>
-      <label>{props.label}</label>
+    <S.InputDiv>
+      <label>{label}</label>
       <input></input>
-    </div>
+    </S.InputDiv>
   )
 }
 
