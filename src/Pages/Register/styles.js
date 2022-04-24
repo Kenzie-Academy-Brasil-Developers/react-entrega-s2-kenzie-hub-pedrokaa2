@@ -125,6 +125,12 @@ export const Select = styled.div `
     border-radius: 1px;
   }
 
+  select:focus {
+    border: 1px solid var(--grey1);
+    background-color: var(--grey3);
+    outline: 0
+  }
+
   label {
     font-size: 12px;
     color: var(--grey0);

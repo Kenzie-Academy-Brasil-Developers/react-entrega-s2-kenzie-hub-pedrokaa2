@@ -1,10 +1,10 @@
 import * as S from './styles'
 
-const Input = ({label, ...rest}) => {
+const Input = ({label, register, name, ...rest}) => {
   return (
     <S.InputDiv>
       <label>{label}</label>
-      <input {...rest}></input>
+      <input {...register(`${name}`)} {...rest}></input>
     </S.InputDiv>
   )
 }

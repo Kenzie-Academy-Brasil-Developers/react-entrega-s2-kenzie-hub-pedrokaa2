@@ -1,7 +1,6 @@
 import * as S from "./styles";
 import KenzieHub from "../../Img/KenzieHub.svg";
 import Input from "../../Components/Input";
-import Button from "../../Components/Button";
 
 const Register = () => {
   return (
