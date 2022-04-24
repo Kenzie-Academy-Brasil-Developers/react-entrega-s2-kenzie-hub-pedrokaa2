@@ -11,10 +11,10 @@ const Login = () => {
           <h1>Login</h1>
         <form>
             <S.FormDivEmail>
-            <Input label="Email" />
+            <Input label="Email" placeholder = "Digite aqui seu email"/>
             </S.FormDivEmail>
           <S.FormDivSenha>
-            <Input label="Senha" />
+            <Input label="Senha" placeholder = "Digite aqui sua senha"/>
           </S.FormDivSenha>
           <Button children="Entrar" />
           <span>Ainda não possui uma conta?</span>

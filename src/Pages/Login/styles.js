@@ -42,9 +42,16 @@ export const FormContainer = styled.div `
   input {
     padding: 0 13px;
     height: 38.5px;
+    border: 1px solid var(--grey2);
+    background-color: var(--grey2);
+    color: var(--grey1);
+    border-radius: 1px;
+  }
+
+  input:focus {
     border: 1px solid var(--grey1);
     background-color: var(--grey3);
-    color: var(--grey1);
+    outline: 0
   }
 
   button {
