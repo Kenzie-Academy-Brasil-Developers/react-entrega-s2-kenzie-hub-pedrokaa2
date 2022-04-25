@@ -9,7 +9,7 @@ export const Container = styled.div `
   background-color: var(--grey4);
 `
 
-export const FormContainer = styled.div `
+export const FormContainer = styled.form `
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -66,6 +66,10 @@ export const FormContainer = styled.div `
     justify-content: center;
     padding: 10%;
   }
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export const FormDivEmail = styled.div `

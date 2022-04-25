@@ -2,41 +2,46 @@ import { Link } from 'react-router-dom';
 import * as S from "./styles";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
-import axios from 'axios';
+import Api from '../../Services/api';
 import { useForm } from "react-hook-form"
 import { useHistory } from "react-router-dom"
 import KenzieHub from "../../Img/KenzieHub.svg";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import { toast } from 'react-toastify';
-import Register from '../Register';
 
-const Login = ({SetInfoUser, setAuthenticated,authenticated}) => {
+const Login = () => {
     const history = useHistory()
     const formSchema = yup.object().shape({
-        email:yup.string().email("E-mail invalido").required("Campo Obrigatorio"),
-        password:yup.string().required("Campo Obrigatorio")
+        email: yup
+                .string()
+                .email("E-mail invalido")
+                .required("Email obrigatório"),
+        password: yup
+                   .string()
+                   .required("Senha obrigatória")
 
     })
     const {register,handleSubmit}= useForm({
         resolver: yupResolver(formSchema)
     })
 
-    const onSubmitFunction =({email,password})=> {
-        const newLog ={
+    const onSubmitFunction = ({email,password})=> {
+        const newLog = {
             email,
             password
         }
-        axios.post("sessions",newLog).then((resp)=>{
+        Api
+          .post("sessions",newLog)
+          .then((resp)=>{
             const {token} = resp.data
             
             localStorage.setItem("@KenzieHub:token",JSON.stringify(token))
-            toast.success("Login Concluido")
             localStorage.setItem("@KenzieHub:user",JSON.stringify(resp.data.user))
-            setAuthenticated(true)
             history.push("/home")
+            toast.success("Login Concluido")
         })
-        .catch((error)=>{
+        .catch(()=>{
             toast.error("Email ou senha Incorreto")
         })
     }
