@@ -1,10 +1,12 @@
 import * as S from './styles'
 import Button from '../Button';
 import { useState } from 'react';
+import createTechnology from '../../Utility';
 
-const ModalAdd = ({ setModalDisplay, setAddTech, createTecnolog }) => {
+const ModalAdd = ({ setModalDisplay }) => {
 
-  const [nivel,setNivel] = useState("")
+  const [nivel, setNivel] = useState("Iniciante")
+  const [addTech, setAddTech] = useState("")
 
   return (
     <>
@@ -29,7 +31,7 @@ const ModalAdd = ({ setModalDisplay, setAddTech, createTecnolog }) => {
                 <option value="Avançado">Avançado</option>
               </select>
             <Button 
-              onClick={() => createTecnolog(nivel)}
+              onClick={() => createTechnology(nivel, addTech)}
             >
               Cadastrar Tecnologia
             </Button>

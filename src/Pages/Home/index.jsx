@@ -3,7 +3,6 @@ import KenzieHub from '../../Img/KenzieHub.svg'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Api from '../../Services/api'
-import { toast } from "react-toastify"
 import ModalAdd from "../../Components/ModalAdd"
 import ModalModify from "../../Components/ModalModify"
 
@@ -11,11 +10,10 @@ const Home = () => {
   
   const history = useHistory()
   const [token] = useState(JSON.parse(localStorage.getItem("@KenzieHub:token")))
-  const [tecnolog,setTecnolog] = useState([])
+  const [technology,setTechnology] = useState([])
   const [modalDisplay,setModalDisplay] = useState(false)
   const [modalChange,setModalChange] = useState(false)
   const [other,setOther] =  useState("")
-  const [addTech,setAddTech] = useState("")
   const [user] = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")|| ""))
 
   const deleteTech = (value)=>{
@@ -36,37 +34,20 @@ const Home = () => {
             }
         })
     }
-
-    const createTecnolog = (nivel)=>{
-    
-        Api.post("users/techs",
-        {
-            title: addTech,
-	          status: nivel
-        },
-        {
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then(()=> toast.success("Tecnologia cadastrada"))
-        .catch((err)=> console.log(err.response.data))
-        .finally(() => console.log("chegou"))
-    
-    }
     
   useEffect(()=>{
     listTech()
   },[])
 
   const listTech = () => {
-    Api.get(`users/${user.id}`).then((resp)=> setTecnolog(resp.data.techs))
+    console.log(user.id)
+    Api.get(`users/${user.id}`).then((resp)=> setTechnology(resp.data.techs))
   }
 
   return (
     <>
        {modalDisplay && 
-          <ModalAdd setAddTech={setAddTech} createTecnolog={createTecnolog} setModalDisplay={setModalDisplay} />
+          <ModalAdd setModalDisplay={setModalDisplay} />
         }
         {modalChange && 
           <ModalModify setOther={setOther} deleteTech={deleteTech} otherTech={otherTech} setModalChange={setModalChange} />
@@ -85,7 +66,7 @@ const Home = () => {
           <button onClick={() => setModalDisplay(true)}>+</button>
         </S.H1ButtonDiv>
         <div>
-          {tecnolog.map((tech)=> 
+          {technology.map((tech)=> 
               <div 
                 id={tech.id} 
                 onClick={(e)=> {
