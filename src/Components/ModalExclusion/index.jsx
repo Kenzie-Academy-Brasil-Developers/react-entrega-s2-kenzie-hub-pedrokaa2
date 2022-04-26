@@ -3,7 +3,7 @@ import Button from '../Button';
 import { useState } from 'react';
 
 
-const ModalExclusion = ({setModalDisplay, deleteTech, setModalChange}) => {
+const ModalExclusion = ({deleteTech, setModalChange, techTitle}) => {
 
   const [getUser] = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")|| ""))
   const [getSkill] = useState(JSON.parse(localStorage.getItem("@KenzieHub:currentID")|| ""))
@@ -12,13 +12,7 @@ const ModalExclusion = ({setModalDisplay, deleteTech, setModalChange}) => {
     setModalChange(false)
   }
 
-  const gettingSkills = () => {
-    const findSkill = getUser.techs.find(skill => skill.id === getSkill)
-    return findSkill
-  }
-
   return (
-    <>
       <S.ModalContainer>
           <S.H1ButtonDivModal>
             <p>Detalhes da Tecnologia</p>
@@ -29,8 +23,8 @@ const ModalExclusion = ({setModalDisplay, deleteTech, setModalChange}) => {
               <label>Nome do Projeto</label>
               <input
                 type="text"
-                readOnly="readOnly" 
-                value={getUser && getSkill !== "" && gettingSkills().title}
+                readOnly="readOnly"
+                value={techTitle}
               >
               </input>
             </S.Input>
@@ -56,7 +50,6 @@ const ModalExclusion = ({setModalDisplay, deleteTech, setModalChange}) => {
             </S.ButtonsDiv>
           </S.Select>
       </S.ModalContainer>
-    </>
   );
 };
 export default ModalExclusion;

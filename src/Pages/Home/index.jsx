@@ -13,35 +13,36 @@ const Home = () => {
   const [technology,setTechnology] = useState([])
   const [modalDisplay,setModalDisplay] = useState(false)
   const [modalChange,setModalChange] = useState(false)
-  const [user] = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")|| ""))
+  const [user, setUser] = useState()
+  const [userID] = useState(JSON.parse(localStorage.getItem("@KenzieHub:userid")))
 
   const deleteTech = (id)=>{
-        Api.delete(`users/techs/${id}`,{
-            headers:{
-                Authorization : `Bearer ${token}`
-            }
-        })
-    }
+    Api.delete(`users/techs/${id}`,{
+      headers:{
+        Authorization : `Bearer ${token}`
+      }
+    })
+  }
      
-  useEffect(()=>{
+  useEffect(() => {
     listTech()
   },[])
 
   useEffect(() => {
-    setTechnology(technology)
-  }, [technology])
+    listTech()
+  },[technology])
 
   const listTech = () => {
-    Api.get(`users/${user.id}`).then((resp)=> setTechnology(resp.data.techs))
+    Api.get(`users/${userID}`).then((resp)=> {
+      setTechnology(resp.data.techs)
+      setUser(resp.data)
+    })
   }
-
+  
   return (
     <>
-       {modalDisplay && 
+        {modalDisplay && 
           <ModalAdd setModalDisplay={setModalDisplay} />
-        }
-        {modalChange &&
-          <ModalExclusion setModalDisplay={setModalDisplay} deleteTech={deleteTech} setModalChange={setModalChange}/>
         }
     <S.Container>
        <S.DivImgButton>
@@ -49,8 +50,8 @@ const Home = () => {
         <button onClick={()=> history.push("/")}>Sair</button>
       </S.DivImgButton>
       <S.H1Pdiv>
-        <h1>Olá, {user.name}</h1>
-        <p>{user.course_module}</p>
+        <h1>Olá, {user !== undefined && user.name}</h1>
+        <p>{user !== undefined && user.course_module}</p>
       </S.H1Pdiv>
         <S.H1ButtonDiv>
           <h1>Tecnologias</h1>
@@ -59,7 +60,11 @@ const Home = () => {
         <div>
           {technology.map((tech)=> 
               <S.TechOutsideMap key={tech.id} >
+              {modalChange &&
+                <ModalExclusion deleteTech={deleteTech} setModalChange={setModalChange} techTitle={tech.title}/>
+              }
                 <S.MapTech 
+                  
                   id={tech.id} 
                   onClick={(e)=> {
                     setModalChange(true)

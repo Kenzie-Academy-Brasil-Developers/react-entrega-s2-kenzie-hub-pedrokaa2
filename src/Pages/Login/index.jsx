@@ -37,7 +37,7 @@ const Login = () => {
             const {token} = resp.data
             
             localStorage.setItem("@KenzieHub:token",JSON.stringify(token))
-            localStorage.setItem("@KenzieHub:user",JSON.stringify(resp.data.user))
+            localStorage.setItem("@KenzieHub:userid",JSON.stringify(resp.data.user.id))
             history.push("/home")
             toast.success("Login Concluido")
         })
