@@ -27,7 +27,7 @@ const ModalExclusion = ({deleteTech, setModalChange, techTitle}) => {
               </input>
             </S.Input>
               <label>Status</label>
-              <select onChange={(e) => {deleteTech(e.target.value)}}>
+              <select onChange={(e) => (e.target.value)}>
                 <option value="Iniciante">Iniciante</option>
                 <option value="Intermediário">Intermediário</option>
                 <option value="Avançado">Avançado</option>
@@ -41,6 +41,7 @@ const ModalExclusion = ({deleteTech, setModalChange, techTitle}) => {
                   if (getUser && getSkill !== ""){
                     deleteTech(getSkill)
                   }
+                  console.log(getSkill)
                 }}
               >
                 Excluir
