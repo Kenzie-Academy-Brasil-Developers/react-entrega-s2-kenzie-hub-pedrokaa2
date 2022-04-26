@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Api from '../../Services/api'
 import ModalAdd from "../../Components/ModalAdd"
-import ModalModify from "../../Components/ModalModify"
+import ModalExclusion from "../../Components/ModalExclusion"
 
 const Home = () => {
   
@@ -13,34 +13,25 @@ const Home = () => {
   const [technology,setTechnology] = useState([])
   const [modalDisplay,setModalDisplay] = useState(false)
   const [modalChange,setModalChange] = useState(false)
-  const [other,setOther] =  useState("")
   const [user] = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")|| ""))
 
-  const deleteTech = (value)=>{
-        Api.delete(`users/techs/${value}`,{
+  const deleteTech = (id)=>{
+        Api.delete(`users/techs/${id}`,{
             headers:{
                 Authorization : `Bearer ${token}`
             }
         })
     }
-    
-    const otherTech =(value)=>{
-        Api.put(`users/techs/${value}`,{
-            status : other
-        },
-        {
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        })
-    }
-    
+     
   useEffect(()=>{
     listTech()
   },[])
 
+  useEffect(() => {
+    setTechnology(technology)
+  }, [technology])
+
   const listTech = () => {
-    console.log(user.id)
     Api.get(`users/${user.id}`).then((resp)=> setTechnology(resp.data.techs))
   }
 
@@ -49,8 +40,8 @@ const Home = () => {
        {modalDisplay && 
           <ModalAdd setModalDisplay={setModalDisplay} />
         }
-        {modalChange && 
-          <ModalModify setOther={setOther} deleteTech={deleteTech} otherTech={otherTech} setModalChange={setModalChange} />
+        {modalChange &&
+          <ModalExclusion setModalDisplay={setModalDisplay} deleteTech={deleteTech} setModalChange={setModalChange}/>
         }
     <S.Container>
        <S.DivImgButton>
@@ -67,27 +58,24 @@ const Home = () => {
         </S.H1ButtonDiv>
         <div>
           {technology.map((tech)=> 
-              <div 
-                id={tech.id} 
-                onClick={(e)=> {
+              <S.TechOutsideMap key={tech.id} >
+                <S.MapTech 
+                  id={tech.id} 
+                  onClick={(e)=> {
                     setModalChange(true)
-                }} 
-                key={tech.id}
-              >
-
-                  <h4
-                    id={tech.id}
-                  > 
-                       {tech.title}
-                  </h4>
-
-                  <p 
-                    id={tech.id}
-                  >
-                       {tech.status}
-                  </p>
+                    localStorage.setItem("@KenzieHub:currentID", JSON.stringify(e.target.id))
+                  }} 
+                >
+                    <h1>
+                      {tech.title}
+                    </h1>
+  
+                    <span>
+                      {tech.status}
+                    </span>
+                </S.MapTech>
             
-              </div>           
+              </S.TechOutsideMap>           
           )}
         </div>
     </S.Container>

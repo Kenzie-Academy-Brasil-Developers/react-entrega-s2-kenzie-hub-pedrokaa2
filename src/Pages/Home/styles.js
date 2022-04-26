@@ -52,6 +52,7 @@ export const H1ButtonDiv = styled.div `
   justify-content: space-between;
   width: 92.5%;
   margin-top: 4%;
+  margin-bottom: 4%;
 
   button {
     padding: 2px 13px;
@@ -62,5 +63,34 @@ export const H1ButtonDiv = styled.div `
     border-radius: 4px;
     font-weight: 900;
     font-size: 22px;
+  }
+`
+
+export const TechOutsideMap = styled.div `
+  background-color: var(--grey3);
+  display: flex;
+  width: 93.5vw;
+`
+
+export const MapTech = styled.div `
+  display: flex;
+  color: var(--grey0);
+  background-color: var(--grey4);
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 5%;
+  width: 90%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  height: 40px;
+  padding: 20px;
+  border-radius: 1px;
+
+  span {
+    color: var(--grey1);
+  }
+
+  :focus {
+    background-color: var(--grey2)
   }
 `
