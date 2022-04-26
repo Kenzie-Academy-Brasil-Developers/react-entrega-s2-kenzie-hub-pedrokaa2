@@ -79,10 +79,10 @@ const Register = () => {
           <Input label="Email" placeholder = "Digite aqui seu email" register={register} name="email"/>
         </S.FormDivEmail>
         <S.FormDivSenha>
-          <Input label="Senha" placeholder = "Digite aqui sua senha" register={register} name="password"/>
+          <Input label="Senha" placeholder = "Digite aqui sua senha" register={register} name="password" type="password"/>
         </S.FormDivSenha>
         <S.FormDivSenha>
-          <Input label="Confirmar Senha" placeholder = "Confirme sua senha" register={register} name="confirmedPassword"/>
+          <Input label="Confirmar Senha" placeholder = "Confirme sua senha" register={register} name="confirmedPassword" type="password"/>
         </S.FormDivSenha>
         <S.Select>
           <label>Selecionar Módulo</label>
