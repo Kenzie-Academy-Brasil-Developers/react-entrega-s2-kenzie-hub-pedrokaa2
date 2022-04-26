@@ -56,8 +56,7 @@ const Register = () => {
                 return history.push("/")
             })
         
-        .catch((error)=>{
-            console.log(error.response.data)
+        .catch(()=>{
             toast.error("Erro ao criar a conta , tente um email diferente")
         })
       }

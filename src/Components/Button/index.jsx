@@ -1,12 +1,12 @@
 import * as S from "./styles";
 
-const Button = ({children, isGrey = false}) => {
+const Button = ({children, isGrey = false, onClick}) => {
   return (
-    <S.ButtontDiv isGrey = {isGrey}>
-      <button>
+    <S.ButtonDiv isGrey = {isGrey}>
+      <button onClick={onClick}>
         {children}
       </button>
-    </S.ButtontDiv>
+    </S.ButtonDiv>
   )
 }
 
