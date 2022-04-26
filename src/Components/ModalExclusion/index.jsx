@@ -1,12 +1,10 @@
 import * as S from './styles'
 import Button from '../Button';
-import { useState } from 'react';
-
 
 const ModalExclusion = ({deleteTech, setModalChange, techTitle}) => {
 
-  const [getUser] = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")|| ""))
-  const [getSkill] = useState(JSON.parse(localStorage.getItem("@KenzieHub:currentID")|| ""))
+  const getUser = JSON.parse(localStorage.getItem("@KenzieHub:user") || "[]")
+  const getSkill = JSON.parse(localStorage.getItem("@KenzieHub:currentID") || "[]")
 
   const HandleDisplayClick = () => {
     setModalChange(false)
