@@ -7,6 +7,7 @@ export const Container = styled.div `
   width: 100vw;
   height: 100vh;
   background-color: var(--grey4);
+
 `
 
 export const FormContainer = styled.form `
@@ -19,8 +20,8 @@ export const FormContainer = styled.form `
   width: 92.5%;
 
   h1 {
-    margin-top: 11%;
-    margin-bottom: 6%;
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
   form {
@@ -60,15 +61,21 @@ export const FormContainer = styled.form `
     display: flex;
     justify-content: center;
   }
+
+  @media screen and (min-width:768px) {
+    width: 400px;
+    margin: 30px auto;
+  }
+
 `
 
 export const FormDivEmail = styled.div `
-  padding: 3% 0;
+  padding: 10px 0;
   width: 88%;
 `
 
 export const FormDivSenha = styled.div `
-  padding: 3% 0;
+  padding: 10px 0;
   width: 88%;
 `
 
@@ -77,8 +84,8 @@ export const DivImgButton = styled.div `
   justify-content: space-between;
   align-items: center;
   width: 92.5%;
-  margin-top: 6%;
-  margin-bottom: 5%;
+  margin-top: 20px;
+  margin-bottom: 10px;
 
   button {
     padding: 2px 19px;
@@ -87,6 +94,11 @@ export const DivImgButton = styled.div `
     color: var(--grey0);
     font-size: 10px;
   }
+
+  @media screen and (min-width:768px) {
+    width: 400px;
+  }
+
 `
 
 export const DivH1Span = styled.div `
@@ -95,7 +107,6 @@ export const DivH1Span = styled.div `
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 15px 0;
 
   h1 {
     color: var(--grey0);
@@ -134,9 +145,9 @@ export const Select = styled.div `
   label {
     font-size: 12px;
     color: var(--grey0);
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     width: 88%;
-    margin-top: 2%;
+    margin-top: 1%;
   }
 
   button {
@@ -145,4 +156,6 @@ export const Select = styled.div `
     width: 88%;
     margin: 5% 0;
   }
+
+
 `
