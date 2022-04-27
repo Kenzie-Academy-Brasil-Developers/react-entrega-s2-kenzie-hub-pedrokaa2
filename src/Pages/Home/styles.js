@@ -27,7 +27,7 @@ export const DivImgButton = styled.div `
   }
 
   @media screen and (min-width:768px) {
-    width: 700px;
+    width: 750px;
     margin: 30px auto;
   }
 `
@@ -51,15 +51,11 @@ export const H1Pdiv = styled.div `
   @media screen and (min-width:768px) {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding: 25px 0px 25px 0px;
 
     p {
       margin-top: 0;
-      margin-right: 4%;
-    }
-    
-    h1 {
-      margin-left: 2%;
     }
 
   }
@@ -85,12 +81,22 @@ export const H1ButtonDiv = styled.div `
     font-weight: 900;
     font-size: 22px;
   }
+
+  @media screen and (min-width:768px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 750px;
+  }
 `
 
 export const TechOutsideMap = styled.div `
   background-color: var(--grey3);
   display: flex;
   width: 93.5vw;
+
+  @media screen and (min-width:768px) {
+    width: 750px;
+  }
 `
 
 export const MapTech = styled.div `
@@ -114,4 +120,13 @@ export const MapTech = styled.div `
   :focus {
     background-color: var(--grey2)
   }
+
+  @media screen and (min-width:768px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 750px;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
 `
