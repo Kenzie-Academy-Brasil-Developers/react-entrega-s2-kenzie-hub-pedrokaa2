@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import KenzieHub from "../../Img/KenzieHub.svg";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import Api from "../../Services/api";
 import ModalAdd from "../../Components/ModalAdd";
 import ModalExclusion from "../../Components/ModalExclusion";
@@ -9,16 +9,17 @@ import ModalExclusion from "../../Components/ModalExclusion";
 const Home = () => {
   const history = useHistory();
   const [token] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHub:token"))
+   localStorage.getItem("@KenzieHub:token") || ""
   );
   const [technology, setTechnology] = useState([]);
   const [modalDisplay, setModalDisplay] = useState(false);
   const [modalChange, setModalChange] = useState(false);
   const [user, setUser] = useState();
   const [userID] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHub:userid"))
+    localStorage.getItem("@KenzieHub:userid") || ""
   );
   const [titleTech, setTitleTech] = useState()
+    console.log(token)
 
   const deleteTech = (id) => {
     Api.delete(`users/techs/${id}`, {
@@ -43,6 +44,15 @@ const Home = () => {
     });
   };
 
+  const logout = () => {
+    localStorage.clear() 
+    history.push("/")
+  }
+
+  if (!token) {
+    return <Redirect to="/"/> 
+  }
+
   return (
     <>
       {modalChange && (
@@ -56,7 +66,7 @@ const Home = () => {
       <S.Container>
         <S.DivImgButton>
           <img src={KenzieHub} alt="" />
-          <button onClick={() => history.push("/")}>Sair</button>
+          <button onClick={logout}>Sair</button>
         </S.DivImgButton>
         <S.H1Pdiv>
           <h1>Olá, {user !== undefined && user.name}</h1>
