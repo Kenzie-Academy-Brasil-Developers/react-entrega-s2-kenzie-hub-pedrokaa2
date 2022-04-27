@@ -25,6 +25,11 @@ export const DivImgButton = styled.div `
     font-size: 10px;
     border-radius: 4px;
   }
+
+  @media screen and (min-width:768px) {
+    width: 700px;
+    margin: 30px auto;
+  }
 `
 
 export const H1Pdiv = styled.div `
@@ -41,6 +46,22 @@ export const H1Pdiv = styled.div `
     margin-top: 10px;
     color: var(--grey1);
     font-weight: 400;
+  }
+
+  @media screen and (min-width:768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      margin-top: 0;
+      margin-right: 4%;
+    }
+    
+    h1 {
+      margin-left: 2%;
+    }
+
   }
 `
 

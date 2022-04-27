@@ -24,8 +24,8 @@ export const FormContainer = styled.div `
   width: 92.5%;
 
   h1 {
-    margin-top: 11%;
-    margin-bottom: 6%;
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
   form {
@@ -64,11 +64,16 @@ export const FormContainer = styled.div `
     color: var(--grey1);
     display: flex;
     justify-content: center;
-    padding: 10%;
+    padding: 30px;
   }
 
   a {
     text-decoration: none;
+  }
+
+  @media screen and (min-width:768px) {
+    width: 400px;
+    margin: 30px auto;
   }
 `
 
