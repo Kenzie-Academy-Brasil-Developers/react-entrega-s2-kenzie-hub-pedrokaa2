@@ -4,14 +4,18 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import Api from '../../Services/api';
 import { useForm } from "react-hook-form"
-import { useHistory } from "react-router-dom"
+import { useHistory, Redirect } from "react-router-dom"
 import KenzieHub from "../../Img/KenzieHub.svg";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const Login = () => {
     const history = useHistory()
+    const [token] = useState(
+      localStorage.getItem("@KenzieHub:token") || ""
+     );
     const formSchema = yup.object().shape({
         email: yup
                 .string()
@@ -36,8 +40,8 @@ const Login = () => {
           .then((resp)=>{
             const {token} = resp.data
             
-            localStorage.setItem("@KenzieHub:token",JSON.stringify(token))
-            localStorage.setItem("@KenzieHub:userid",JSON.stringify(resp.data.user.id))
+            localStorage.setItem("@KenzieHub:token",(token))
+            localStorage.setItem("@KenzieHub:userid",(resp.data.user.id))
             history.push("/home")
             toast.success("Login Concluido")
         })
@@ -45,6 +49,11 @@ const Login = () => {
             toast.error("Email ou senha Incorreto")
         })
     }
+
+    if (token) {
+      return <Redirect to="/home"/> 
+    }
+
   return (
     <S.Container>
         <img src={KenzieHub} alt="" />
